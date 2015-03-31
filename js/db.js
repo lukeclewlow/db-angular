@@ -9,13 +9,21 @@ dbApp.config(function($sceDelegateProvider) {
   ]);
 });
 
-dbApp.controller('MainCtrl', [function() {
+dbApp.controller('MainCtrl', ['$http', function($http) {
   var self = this;
-  self.posts = [
-    {id: 1, artist: 'Blah', title: 'Blah Blah', link: 'https://www.youtube.com/embed/hzqFmXZ8tOE?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'},
-    {id: 2, artist: 'Bblah', title: 'Who knows', link: 'https://www.youtube.com/embed/9Bmh9A8Dl1c?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'},
-    {id: 3, artist: 'Bblah', title: 'Who knows', link: 'https://www.youtube.com/embed/9Bmh9A8Dl1c?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'},
-    {id: 4, artist: 'Bbblah', title: 'Summat', link: 'https://www.youtube.com/embed/9Bmh9A8Dl1c?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'}
-  ];
+  $http.get('http://localhost:3000/tunes.json').
+    success(function(data, status, headers, config) {
+      self.posts = data;
+    });
+
+
+
+
+  // self.posts = [
+  //   {id: 1, artist: 'Blah', title: 'Blah Blah', link: 'https://www.youtube.com/embed/hzqFmXZ8tOE?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'},
+  //   {id: 2, artist: 'Bblah', title: 'Who knows', link: 'https://www.youtube.com/embed/9Bmh9A8Dl1c?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'},
+  //   {id: 3, artist: 'Bblah', title: 'Who knows', link: 'https://www.youtube.com/embed/9Bmh9A8Dl1c?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'},
+  //   {id: 4, artist: 'Bbblah', title: 'Summat', link: 'https://www.youtube.com/embed/9Bmh9A8Dl1c?list=FL7wg_Gt_lNNcI8-Wxes6KGw}'}
+  // ];
 }]);
 
